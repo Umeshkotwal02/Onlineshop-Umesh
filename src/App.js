@@ -1,23 +1,24 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Demo from './Demo';
 import NavbarMain from './Components/NavbarMain';
 import FirstPage from './pages/FIrst-Page';
-import Login from './pages/LoginModel';
+import SignUpModal from './pages/SignUpModal';
 
 function App() {
 
   return (
     <>
       <div className='pages-container'>
+        {/* <Demo /> */}
         <NavbarMain />
         <FirstPage />
-        <Login/>
-        <Demo />
+        <SignUpModal />
       </div>
     </>
   )
 }
 
 export default App;
+
+

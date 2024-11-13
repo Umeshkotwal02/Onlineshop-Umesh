@@ -1,78 +1,70 @@
-import React from 'react';
-import { Modal, Button, Form, Col, Row } from 'react-bootstrap';
-import {FcGoogle} from "react-icons/fc";
+import React, { useState } from 'react';
+import { NavbarText, Row, Col, Container, Form, Nav, Navbar, Offcanvas, Image } from 'react-bootstrap';
+import { CgProfile } from 'react-icons/cg';
+import { IoCartOutline } from 'react-icons/io5';
+import "../styles/Navbar.css";
+import SignUpModal from '../pages/SignUpModal';
 
+function NavbarMain() {
+    const [showSignUpModal, setShowSignUpModal] = useState(false);
 
-function LoginModal({ show, onHide }) {
+    const handleShowSignUpModal = () => setShowSignUpModal(true);
+    const handleCloseSignUpModal = () => setShowSignUpModal(false);
+
     return (
-        <Modal show={show} onHide={onHide} centered size="lg" closeButton>
-            <Modal.Body className="p-0">
-                <Row>
-                    {/* Left half for the image */}
-                    <Col md={6} className="p-0">
-                        <div className="position-relative" style={{ height: "100vh" }}>
-                            {/* Background image */}
-                            <div
-                                className="position-absolute top-0 start-0 w-100 h-100"
-                                style={{
-                                    backgroundImage: "url('assets/images/modal-bg.jpg')",
-                                    backgroundSize: "cover",
-                                    backgroundPosition: "center",
-                                    filter: "brightness(0.6)"
-                                }}
-                            ></div>
+        <>
+            <Navbar expand="sm" className="bg-body-tertiary mb-3">
+                <Container fluid>
+                    <Navbar.Toggle aria-controls="offcanvasNavbar-expand-sm" />
+                    <Navbar.Offcanvas
+                        id="offcanvasNavbar-expand-sm"
+                        aria-labelledby="offcanvasNavbarLabel-expand-sm"
+                        placement="start"
+                    >
+                        <Offcanvas.Header className="bg-secondary" closeButton>
+                            <Offcanvas.Title id="offcanvasNavbarLabel-expand-sm">
+                                <Image src="assets/images/web-logo.png" className='img-fluid ' rounded />
+                            </Offcanvas.Title>
+                        </Offcanvas.Header>
+                        <Offcanvas.Body>
+                            <Nav className="d-flex justify-content-start flex-grow-1 pe-3 fw-semibold text-dark">
+                                <Nav.Link href="#men" className="nav-links">MEN</Nav.Link>
+                                <Nav.Link href="#women" className="nav-links">WOMEN</Nav.Link>
+                                <Nav.Link href="#jewelery" className="nav-links">JEWELERY</Nav.Link>
+                                <Nav.Link href="#electronics" className="nav-links">ELECTRONICS</Nav.Link>
+                            </Nav>
+                        </Offcanvas.Body>
+                    </Navbar.Offcanvas>
+                    <Row>
+                        <Col xl={3} xxl={3} sm={3} md={3} xs={3}>
+                            <Navbar.Brand href="/home" className='me-auto justify-content-start flex-grow-1 pe-3'>
+                                <Image src="assets/images/web-logo.png" className='img-fluid' rounded />
+                            </Navbar.Brand>
+                        </Col>
+                        <Col xl={9} xxl={9} sm={9} md={9} xs={9}>
+                            <NavbarText className='d-flex justify-content-around gap-3'>
+                                <Form className="d-flex align-items-center me-3 fw-bold">
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Search Product"
+                                        className="rounded-start p-1"
+                                    />
+                                    <span className="material-symbols-outlined fs-6 text-white bg-dark p-2 rounded-end">
+                                        search
+                                    </span>
+                                </Form>
+                                <CgProfile size={30} className='fw-bold' onClick={handleShowSignUpModal} style={{ cursor: 'pointer' }} />
+                                <IoCartOutline size={30} className='mr-2' />
+                            </NavbarText>
+                        </Col>
+                    </Row>
+                </Container>
+            </Navbar>
 
-                            {/* Overlay content */}
-                            <div className="position-relative text-dark p-3 d-flex align-items-start justify-content-center" style={{ height: "100%" }}>
-                                <div className="p-4 py-md-5 content d-grid">
-                                    <h2>Register &amp; Be A Part Of The Online Shop Circle!</h2>
-                                    <h6 class="pt-2 pt-md-4">Enjoy exclusive benefits like:</h6>
-                                    <ul>
-                                        <li>Get 15% off on your first order* | <b>Use code: INDIA15</b></li>
-                                        <li>Exclusive early collection showcase</li>
-                                        <li>Access amazing offers, discounts and more</li>
-                                    </ul>
-                                    <h6>Join Now !</h6>
-                                    <span class="text-end fs-12">T &amp; C Apply</span>
-                                </div>
-                            </div>
-                        </div>
-                    </Col>
-
-                    {/* Right half for the login form */}
-                    <Col md={6} className="d-flex flex-column justify-content-center p-4">
-                        <button type="button" class="btn-close d-flex justify-content-end" aria-label="Close" onClick={onHide}></button>
-                        <h5 className="mb-4 text-center">Login</h5>
-                        <Form>
-                            <Form.Group controlId="formBasicEmail" className="mb-3">
-                                <Form.Label>Email address</Form.Label>
-                                <Form.Control type="email" placeholder="Enter email" />
-                            </Form.Group>
-
-                            <Form.Group controlId="formBasicPassword" className="mb-3">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" placeholder="Password" />
-                            </Form.Group>
-
-                            <Button variant="primary" type="submit" className="w-100 mb-3">
-                                Login
-                            </Button>
-
-                            <hr />
-
-                            {/* <Button variant="outline-danger" className="w-100">
-                                Sign in with Google
-                            </Button> */}
-                            <div className='d-flex justify-content-center'>
-                            <FcGoogle className="fs-1 d-flex justify-content-center"/>
-                            </div>
-                        </Form>
-                    </Col>
-                </Row>
-            </Modal.Body>
-
-        </Modal >
+            {/* Render the SignUpModal component */}
+            <SignUpModal show={showSignUpModal} onHide={handleCloseSignUpModal} />
+        </>
     );
 }
 
-export default LoginModal;
+export default NavbarMain;

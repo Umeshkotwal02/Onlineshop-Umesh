@@ -3,13 +3,13 @@ import { NavbarText, Row, Col, Container, Form, Nav, Navbar, Offcanvas, Image } 
 import { CgProfile } from 'react-icons/cg';
 import { IoCartOutline } from 'react-icons/io5';
 import "../styles/Navbar.css";
-import LoginModal from '../pages/LoginModel';
+import SignUpModal from '../pages/SignUpModal';
 
 function NavbarMain() {
-    const [showLoginModal, setShowLoginModal] = useState(false);
+    const [showSignUpModal, setShowSignUpModal] = useState(false);
 
-    const handleShowLoginModal = () => setShowLoginModal(true);
-    const handleCloseLoginModal = () => setShowLoginModal(false);
+    const handleShowSignUpModal = () => setShowSignUpModal(true);
+    const handleCloseSignUpModal = () => setShowSignUpModal(false);
 
     return (
         <>
@@ -23,7 +23,7 @@ function NavbarMain() {
                     >
                         <Offcanvas.Header className="bg-secondary" closeButton>
                             <Offcanvas.Title id="offcanvasNavbarLabel-expand-sm">
-                                <Image src="assets/images/web-logo.png" className='img-fluid' rounded />
+                                <Image src="assets/images/web-logo.png" className='img-fluid ' rounded />
                             </Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
@@ -53,7 +53,7 @@ function NavbarMain() {
                                         search
                                     </span>
                                 </Form>
-                                <CgProfile size={30} className='fw-bold' onClick={handleShowLoginModal} style={{ cursor: 'pointer' }} />
+                                <CgProfile size={30} className='fw-bold' onClick={handleShowSignUpModal} style={{ cursor: 'pointer' }} />
                                 <IoCartOutline size={30} className='mr-2' />
                             </NavbarText>
                         </Col>
@@ -61,8 +61,8 @@ function NavbarMain() {
                 </Container>
             </Navbar>
 
-            {/* Render the LoginModal component */}
-            <LoginModal show={showLoginModal} onHide={handleCloseLoginModal} />
+            {/* Render the SignUpModal component */}
+            <SignUpModal show={showSignUpModal} onHide={handleCloseSignUpModal} />
         </>
     );
 }

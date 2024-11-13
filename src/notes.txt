@@ -262,3 +262,145 @@ fw-bold">Bold text.</p>
 
 - also we can do here hosting.
 
+Steps : 
+1. Go Project Overview then select for web to connect 
+2. install firebase: npm install firebase
+3.  // Import the functions you need from the SDKs you need
+    import { initializeApp } from "firebase/app";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyA-fvXSD78V2805UTE_kemN7ra1RtPeSEI",
+      authDomain: "app-9946c.firebaseapp.com",
+      projectId: "app-9946c",
+      storageBucket: "app-9946c.firebasestorage.app",
+      messagingSenderId: "375657658200",
+      appId: "1:375657658200:web:420376f0103fd36d87d72d"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+
+
+Real-Time-Database :
+1. - select location united-state then next select 2.start-in-test option
+2. - There is Two Mode : (select 2.start-in-test option)
+   - 1. Start in locked mode
+    Your data is private by default. Client read/write access will only be granted as specified by your security rules.
+
+   - 2. Start in test mode
+    Your data is open by default to enable quick setup. However, you must update your security rules within 30 days to enable long-term client read/write access.
+3. To check is working or not add DatabaseURL
+  : databaseURL: "https://DATABASE_NAME.firebaseio.com"
+  : copy database url from created real time firebase.
+
+4. In App.js file import
+      database from firebase file : import { getDatabase } from "firebase/database";
+      app from firebase file  : import { app } from "./firebase"; 
+
+5. Make database instance & pass app
+   const db = getDatabase(app)
+   - so it give instance so we can interact with firebase-real time database
+
+6. Read and Write Data
+  : import {ref, set} from "firebase/database";
+
+7. Create Method for put data in our project and set data using set 
+   : this is created for testing to data base connect with project or not.
+   : data is insert and we can add it, update it in see in firebase database.
+
+## Firebase.js
+import { initializeApp } from "firebase/app";
+const firebaseConfig = {
+    apiKey: "AIzaSyA-fvXSD78V2805UTE_kemN7ra1RtPeSEI",
+    authDomain: "app-9946c.firebaseapp.com",
+    projectId: "app-9946c",
+    storageBucket: "app-9946c.firebasestorage.app",
+    messagingSenderId: "375657658200",
+    appId: "1:375657658200:web:420376f0103fd36d87d72d",
+    databaseURL: "https://app-9946c-default-rtdb.firebaseio.com",
+  };
+
+
+  export const app = initializeApp(firebaseConfig);
+
+## App.js
+: import { getDatabase, ref, set } from "firebase/database";
+  import { app } from "./Components/firebase";
+  const db = getDatabase(app)
+  const putData = () => {
+    set(ref(db, "users/umesh"), {  // users/umesh is root
+      id: 1,
+      name: 'Umesh Pralhad Kotwal',
+      age: 21,
+    })
+  }
+
+  function App() {
+    return (
+      <>
+          <button onClick={putData}>Put Data</button>
+        </div>
+      </>
+    )
+  }
+
+  export default App;
+
+
+  ### Authentication Service ###
+ ## 1. Login with Email & Password (Sign-Up)
+ Steps: 
+    - 1. create auth instance :
+          import { getAuth } from "firebase/auth";
+          const auth = getAuth(app);
+    - 2. create Sign-up user function
+         import function createUserWithEmailAndPassword
+         import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
+// Sign Demo File
+import { app } from "./firebase"
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
+const auth = getAuth(app);
+
+function Demo() {
+
+  const signupUser = ( ) => {
+    createUserWithEmailAndPassword(
+      auth,
+      "umeshkotwal7@gmail.com",
+      'Umesh@123'
+    ).then((value) => console.log(value));
+  }
+  return (
+    <>
+      <h1>Hello I am Demo</h1>
+      <button onClick={signupUser}>Sign-in user</button>
+
+    </>
+  )
+}
+
+export default Demo;
+
+### To Add Google Provider ###
+Step 1:
+- import GoogleAuthProvider and signInWithPopup
+- import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+Step 2:
+- Create signInWithGoogle Function 
+: const SignupWithGoogle = () => {
+        signInWithPopup(auth, googleprovider)
+    };
+
+- give button onClick call
+  <Button onClick={SignupWithGoogle} variant="light" className="border border-rounded">
+
+- ### Sign-In User ###
+- import onAuthStateChanged 
+- make shore this function is in code (const auth = getAuth(app);)
+ 
