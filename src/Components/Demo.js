@@ -56,3 +56,86 @@ function NavbarMain() {
 }
 
 export default NavbarMain
+
+
+
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Modal from 'react-bootstrap/Modal';
+import Row from 'react-bootstrap/Row';
+import Form from 'react-bootstrap/Form';
+import Image from 'react-bootstrap/Image';
+
+function MyModalWithGrid(props) {
+  return (
+    <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Login
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Container>
+          <Row>
+            {/* Left Half with Image */}
+            <Col md={6} className="d-none d-md-block">
+              <Image
+                src="assets/images/login-image.jpg" // Replace with the path to your image
+                alt="Login Visual"
+                className="img-fluid"
+              />
+            </Col>
+
+            {/* Right Half with Login Form */}
+            <Col xs={12} md={6}>
+              <Form>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control type="email" placeholder="Enter email" />
+                </Form.Group>
+
+                <Form.Group controlId="formBasicPassword">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control type="password" placeholder="Password" />
+                </Form.Group>
+
+                <Button variant="primary" type="submit" className="mt-3" block>
+                  Login
+                </Button>
+
+                <hr className="my-4" />
+
+                <Button variant="outline-danger" className="w-100">
+                  Sign in with Google
+                </Button>
+              </Form>
+            </Col>
+          </Row>
+        </Container>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={props.onHide}>
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+
+function App() {
+  const [modalShow, setModalShow] = useState(false);
+
+  return (
+    <>
+      <Button variant="primary" onClick={() => setModalShow(true)}>
+        Launch Login Modal
+      </Button>
+
+      <MyModalWithGrid show={modalShow} onHide={() => setModalShow(false)} />
+    </>
+  );
+}
+
+export default App;

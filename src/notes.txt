@@ -247,3 +247,18 @@ fw-bold">Bold text.</p>
 - here using variant we set navbar Navlink color and with bg="dark" we set backgroundColor of navbar
 - : <Navbar variant="light" bg="light" expand="lg">
 - to want Navbar Fix at top Write : fixed="top"
+
+
+### Firebase Database ###
+- go official web site ( https://firebase.google.com ) and go to console in firebase option in firebase website.
+- create new Project.
+- In Side Build options:
+- Authentication : for authenticate user with Google, twitter, facebook etc
+- Firebase Database : Cloud Database, it store data as document.
+- Real-Time Database : 
+                     - we can update it happen in our project real time Database.
+                     - it move data in tree structure.
+- Storage : Store images, videos so we can fetch data
+
+- also we can do here hosting.
+
